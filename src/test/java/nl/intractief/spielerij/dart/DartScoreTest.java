@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,7 +30,7 @@ public class DartScoreTest {
     void alleDartScoresMet1Pijl() {
         var scores = DartScore.allPossibleScoresWithOneDart();
 
-        // FIXME: produce complete list; include doubles; triples and bullseye
+        // FIXED: produce complete list; include doubles; triples and bullseye
         assertEquals(62,scores.size());
 
         assertEquals(1335,scores.stream().mapToInt(DartScore::berekenScore).sum());
@@ -38,10 +39,13 @@ public class DartScoreTest {
     @Test
     void alleDartScoresMet3Pijlen() {
         var scores = DartScore.allPossibleScoresWithOneDart();
+        var totalScores = DartScore.allPossibleScoresWithThreeDart();
         //FIXME: bereken alle mogelijke scores met 3 pijlen, misschien een DartTurn record of pojo?
+        
 
         //FIXME: onbekend hoeveel
-        assertEquals(1337,scores.size());
+        double expectedScores = Math.pow(62,3);
+        assertEquals(expectedScores, scores.size());
         assertEquals(13371337,scores.stream().mapToInt(DartScore::berekenScore).sum());
     }
 
